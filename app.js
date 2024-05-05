@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/yourDatabaseName', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/Unicornhomework', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Routes
 app.use('/api/destinations', require('./routes/destinations'));
