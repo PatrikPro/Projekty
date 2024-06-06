@@ -1,6 +1,6 @@
 import React from 'react';
-import DestinationCard from './DestinationCard'; // Import komponenty
-import destinations from '../destinations.json'; // Ujistěte se, že cesta k souboru je správná
+import DestinationCard from './DestinationCard'; 
+import destinations from '../destinations.json'; 
 
 function TopDestinations() {
     return (

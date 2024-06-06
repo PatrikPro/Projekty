@@ -1,45 +1,37 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Navbar, Nav, Container, Form, FormControl, Button, NavDropdown } from 'react-bootstrap';
 import TopDestinations from './components/TopDestinations';
 import './App.css';
 
-
 function App() {
-  
-
   return (
-    <div className="App">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">TripTrove</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Top 100</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Plan Trip</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Wishlist</a>
-        </li>  
-       
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-      <header>
-        <h1>Most loved destinations</h1>
-      </header>
-      <TopDestinations />
-      
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar bg="light" expand="lg">
+          <Container>
+            <Navbar.Brand as={Link} to="/">TripTrove</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link as={Link} to="/top-100">Top 100</Nav.Link>
+                <Nav.Link as={Link} to="/plan-trip">Plan Trip</Nav.Link>
+                <Nav.Link as={Link} to="/wishlist">Wishlist</Nav.Link>
+              </Nav>
+              <Form className="d-flex">
+                <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search" />
+                <Button variant="outline-success" type="submit">Search</Button>
+              </Form>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+        <Routes> {/* Updated from Switch to Routes */}
+          <Route path="/top-100" element={<TopDestinations />} /> {/* Updated Route syntax */}
+          <Route path="/plan-trip" element={<h1>Plan Your Trip</h1>} />
+          <Route path="/wishlist" element={<h1>Your Wishlist</h1>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

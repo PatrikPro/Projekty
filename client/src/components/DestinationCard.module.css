@@ -1,52 +1,68 @@
 .card {
-    display: flex;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "image"
+      "text"
+      "stats";
+    max-width: 300px; /* Omezení šířky karty */
+    border-radius: 18px;
+    background: white;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    transition: 0.5s ease;
+    cursor: pointer;
+    margin: 30px auto;
+  }
+  
+  .cardImage {
+    grid-area: image;
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  .cardText {
+    grid-area: text;
+    padding: 15px;
+  }
+  
+  .cardStats {
+    grid-area: stats;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: rgb(255, 7, 110);
+    color: white;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  
+  .stat {
     padding: 10px;
-}
-
-.rank {
-    font-size: 24px;
-    font-weight: bold;
-    padding: 10px;
-    color: green;
-}
-
-.details {
-    flex-grow: 1;
-    padding: 10px;
-}
-
-.details h2 {
-    margin: 0;
-    color: #333;
-}
-
-.tag {
-    display: inline-block;
-    background-color: #eee;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-top: 5px;
-}
-
-.score {
-    font-size: 16px;
-    color: #555;
-    margin-top: 5px;
-}
-
-.actions {
     display: flex;
     align-items: center;
-    margin-top: 10px;
-}
-
-.actionButton {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    padding: 5px 10px;
-}
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .border {
+    border-left: 1px solid rgba(172, 26, 87, 0.5);
+    border-right: 1px solid rgba(172, 26, 87, 0.5);
+  }
+  
+  .value {
+    font-size: 22px;
+    font-weight: 500;
+  }
+  
+  .type {
+    font-size: 11px;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+  
