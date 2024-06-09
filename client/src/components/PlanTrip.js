@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import destinations from '../destinations.json'; // Předpokládáme, že máte seznam destinací v JSON souboru
@@ -32,8 +32,9 @@ function PlanTrip() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form Data:", formData);
-    alert('Your trip has been planned successfully!');
+    const trips = JSON.parse(localStorage.getItem('trips')) || [];
+    trips.push({ ...formData, destination });
+    localStorage.setItem('trips', JSON.stringify(trips));
     navigate('/my-trips');
   };
 
