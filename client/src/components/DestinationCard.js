@@ -40,7 +40,7 @@ function DestinationCard({ destination, addToWishlist, removeFromWishlist, isWis
       <div className={styles.cardStats}>
         <div className={styles.stat}>
           <div className={styles.value}>{destination.id}</div>
-          <div className={styles.type}>ID</div>
+          <div className={styles.type}>Rank</div>
         </div>
         <div className={styles.stat}>
           <div className={styles.value}>{destination.score}</div>
