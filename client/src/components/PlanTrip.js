@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 
 function PlanTrip() {
   const location = useLocation();
@@ -35,50 +36,105 @@ function PlanTrip() {
   };
 
   return (
-    <div>
-      <h1>Plan Your Trip to {destination?.name || 'selected destination'}</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Description:
-          <textarea name="description" value={formData.description} onChange={handleChange} placeholder="Enter your notes here..." />
-        </label>
-        <label>
-          Transportation:
-          <select name="transportation" value={formData.transportation} onChange={handleChange}>
-            <option value="">Select transportation</option>
-            <option value="foot">Foot</option>
-            <option value="plane">Plane</option>
-            <option value="car">Car</option>
-            <option value="bus">Bus</option>
-            <option value="train">Train</option>
-            <option value="boat">Boat</option>
-          </select>
-        </label>
-        <label>
-          Accommodation:
-          <select name="accommodation" value={formData.accommodation} onChange={handleChange}>
-            <option value="">Select accommodation</option>
-            <option value="hotel">Hotel</option>
-            <option value="tent">Tent</option>
-            <option value="car">Car</option>
-          </select>
-        </label>
-        <label>
-          Estimated Cost:
-          <input type="text" name="estimatedCost" value={formData.estimatedCost} onChange={handleChange} placeholder="Enter estimated cost" />
-        </label>
-        <label>
-          Date From:
-          <input type="date" name="dateFrom" value={formData.dateFrom} onChange={handleChange} />
-        </label>
-        <label>
-          Date To:
-          <input type="date" name="dateTo" value={formData.dateTo} onChange={handleChange} />
-        </label>
-        <button type="submit">Finish</button>
-        <button type="button" onClick={handleCancel}>Cancel</button>
-      </form>
-    </div>
+    <Container>
+      <h1 className="mt-4">Plan Your Trip to {destination?.name || 'selected destination'}</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group as={Row} className="mb-3" controlId="formDescription">
+          <Form.Label column sm={2}>Description:</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Enter your notes here..."
+            />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formTransportation">
+          <Form.Label column sm={2}>Transportation:</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              as="select"
+              name="transportation"
+              value={formData.transportation}
+              onChange={handleChange}
+            >
+              <option value="">Select transportation</option>
+              <option value="foot">Foot</option>
+              <option value="plane">Plane</option>
+              <option value="car">Car</option>
+              <option value="bus">Bus</option>
+              <option value="train">Train</option>
+              <option value="boat">Boat</option>
+            </Form.Control>
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formAccommodation">
+          <Form.Label column sm={2}>Accommodation:</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              as="select"
+              name="accommodation"
+              value={formData.accommodation}
+              onChange={handleChange}
+            >
+              <option value="">Select accommodation</option>
+              <option value="hotel">Hotel</option>
+              <option value="tent">Tent</option>
+              <option value="car">Car</option>
+            </Form.Control>
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formEstimatedCost">
+          <Form.Label column sm={2}>Estimated Cost:</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="text"
+              name="estimatedCost"
+              value={formData.estimatedCost}
+              onChange={handleChange}
+              placeholder="Enter estimated cost"
+            />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formDateFrom">
+          <Form.Label column sm={2}>Date From:</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="date"
+              name="dateFrom"
+              value={formData.dateFrom}
+              onChange={handleChange}
+            />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formDateTo">
+          <Form.Label column sm={2}>Date To:</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="date"
+              name="dateTo"
+              value={formData.dateTo}
+              onChange={handleChange}
+            />
+          </Col>
+        </Form.Group>
+
+        <Button variant="primary" type="submit" className="me-2">
+          Finish
+        </Button>
+        <Button variant="secondary" onClick={handleCancel}>
+          Cancel
+        </Button>
+      </Form>
+    </Container>
   );
 }
 
