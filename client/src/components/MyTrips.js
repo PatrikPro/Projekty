@@ -28,7 +28,8 @@ function MyTrips() {
                     <strong>Accommodation:</strong> {trip.accommodation}<br />
                     <strong>Estimated Cost:</strong> {trip.estimatedCost}<br />
                     <strong>Date From:</strong> {trip.dateFrom}<br />
-                    <strong>Date To:</strong> {trip.dateTo}
+                    <strong>Date To:</strong> {trip.dateTo}<br />
+                    <strong>Created At:</strong> {new Date(trip.createdAt).toLocaleString()}
                   </Card.Text>
                 </Card.Body>
               </Card>

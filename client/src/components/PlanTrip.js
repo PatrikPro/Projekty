@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import { Container, Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import destinations from '../destinations.json'; // Předpokládáme, že máte seznam destinací v JSON souboru
 
 function PlanTrip() {
   const location = useLocation();
   const navigate = useNavigate();
   const [destination, setDestination] = useState(location.state?.destination || null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const [formData, setFormData] = useState({
     description: '',
@@ -32,10 +33,16 @@ function PlanTrip() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const currentDateTime = new Date();
     const trips = JSON.parse(localStorage.getItem('trips')) || [];
-    trips.push({ ...formData, destination });
+    trips.push({ ...formData, destination, createdAt: currentDateTime });
     localStorage.setItem('trips', JSON.stringify(trips));
-    navigate('/my-trips');
+    setShowSuccessMessage(true);
+
+    // Nastavení zpoždění pro přesměrování, aby uživatel viděl hlášku
+    setTimeout(() => {
+      navigate('/my-trips');
+    }, 2000); // 2 sekundy
   };
 
   const handleCancel = () => {
@@ -44,6 +51,11 @@ function PlanTrip() {
 
   return (
     <Container>
+      {showSuccessMessage && (
+        <Alert variant="success" onClose={() => setShowSuccessMessage(false)} dismissible>
+          Your trip has been planned successfully!
+        </Alert>
+      )}
       {!destination ? (
         <>
           <h1 className="mt-4">Select a Destination</h1>
